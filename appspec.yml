@@ -1,12 +1,10 @@
 version: 0.0
 os: linux
+
 files:
-  # Copy the Dockerfile, image_tag.txt, and deploy scripts to the EC2 instance
-  - source: Dockerfile
-    destination: /home/ec2-user/app/
   - source: image_tag.txt
     destination: /home/ec2-user/app/
-  - source: scripts/
+  - source: scripts/*.sh
     destination: /home/ec2-user/app/scripts/
 
 permissions:
