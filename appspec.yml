@@ -1,0 +1,41 @@
+version: 0.0
+os: linux
+files:
+  # Copy the Dockerfile, image_tag.txt, and deploy scripts to the EC2 instance
+  - source: Dockerfile
+    destination: /home/ec2-user/app/
+  - source: image_tag.txt
+    destination: /home/ec2-user/app/
+  - source: scripts/
+    destination: /home/ec2-user/app/scripts/
+
+permissions:
+  - object: /home/ec2-user/app
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+hooks:
+  BeforeInstall:
+    # Ensure Docker is running and authenticated
+    - location: scripts/authenticate_docker.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStop:
+    # Stop and remove the running container
+    - location: scripts/stop_container.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    # Pull the image from ECR and run the container
+    - location: scripts/start_container.sh
+      timeout: 300
+      runas: ec2-user
+
+  ValidateService:
+    # Validate the application is running successfully
+    - location: scripts/validate_service.sh
+      timeout: 300
+      runas: ec2-user
