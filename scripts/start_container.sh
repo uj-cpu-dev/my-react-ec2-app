@@ -25,7 +25,7 @@ fi
 
 # Pull the Docker image from ECR
 echo "Pulling the Docker image from ECR..."
-docker pull "${REPO_URI}/${IMAGE_NAME}:${IMAGE_TAG}"
+docker pull "${REPO_URI}/${IMAGE_NAME}:feature-branch-${IMAGE_TAG}"
 if [ $? -ne 0 ]; then
   echo "Failed to pull the image from ECR."
   exit 1
@@ -33,7 +33,7 @@ fi
 
 # Run the container
 echo "Running the Docker container..."
-docker run -d --name "${CONTAINER_NAME}" -p ${PORT}:${PORT} "${REPO_URI}/${IMAGE_NAME}:${IMAGE_TAG}"
+docker run -d --name "${CONTAINER_NAME}" -p ${PORT}:${PORT} "${REPO_URI}/${IMAGE_NAME}:feature-branch-${IMAGE_TAG}"
 if [ $? -ne 0 ]; then
   echo "Failed to start the container."
   exit 1
