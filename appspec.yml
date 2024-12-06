@@ -4,7 +4,7 @@ os: linux
 files:
   - source: image_tag.txt
     destination: /home/ec2-user/app/
-  - source: scripts/*.sh
+  - source: scripts/
     destination: /home/ec2-user/app/scripts/
 
 permissions:
