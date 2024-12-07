@@ -16,6 +16,18 @@ if ! command -v docker &> /dev/null; then
   echo "Docker installed successfully."
 fi
 
+# Check Docker permissions
+echo "Checking Docker permissions..."
+if ! docker info > /dev/null 2>&1; then
+  echo "Docker permissions are not set correctly. Adding ec2-user to the docker group..."
+  sudo usermod -aG docker ec2-user
+
+  echo "Permissions updated. Rebooting the instance to apply changes..."
+  sudo reboot
+fi
+
+echo "Docker permissions are set correctly."
+
 # Authenticate Docker with ECR
 aws ecr get-login-password --region "${AWS_REGION}" | docker login --username AWS --password-stdin "${REPO_URI}"
 if [ $? -ne 0 ]; then

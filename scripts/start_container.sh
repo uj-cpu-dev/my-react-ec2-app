@@ -16,13 +16,6 @@ if ! systemctl is-active --quiet docker; then
   sudo systemctl start docker
 fi
 
-# Check Docker permissions
-echo "Checking Docker permissions..."
-if ! docker info > /dev/null 2>&1; then
-  echo "Docker permissions are not set correctly. Ensure the ec2-user is in the docker group."
-  exit 1
-fi
-
 # Pull the Docker image from ECR
 echo "Pulling the Docker image from ECR..."
 docker pull "${REPO_URI}/${IMAGE_NAME}:${IMAGE_TAG}"
