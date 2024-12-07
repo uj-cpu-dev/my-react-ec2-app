@@ -9,17 +9,6 @@ IMAGE_TAG=$(cat /home/ec2-user/app/image_tag.txt)
 CONTAINER_NAME="react-app-container"
 PORT="3000"
 
-# Check if Docker is installed
-echo "Checking if Docker is installed..."
-if ! command -v docker &> /dev/null; then
-  echo "Docker is not installed. Installing Docker..."
-  sudo yum update -y
-  sudo amazon-linux-extras enable docker
-  sudo yum install -y docker
-  sudo systemctl enable docker
-  echo "Docker installed successfully."
-fi
-
 # Check if Docker is running
 echo "Checking Docker daemon status..."
 if ! systemctl is-active --quiet docker; then
