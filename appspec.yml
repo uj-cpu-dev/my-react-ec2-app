@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:992382383822:task-definition/my-react-app-task-01:3"
+        TaskDefinition: "arn:aws:ecs:us-east-1:992382383822:task-definition/my-react-app-task:5"
         LoadBalancerInfo:
           ContainerName: "my-react-app-container"
           ContainerPort: 3000
