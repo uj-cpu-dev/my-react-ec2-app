@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM public.ecr.aws/docker/library/node:18-alpine AS builder
+FROM public.ecr.aws/docker/library/alpine:latest AS builder
 
 # Set working directory inside the container
 WORKDIR /app
