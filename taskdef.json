@@ -1,5 +1,5 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:992382383822:task-definition/my-react-app-task:5",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:992382383822:task-definition/my-react-app-task:8",
   "containerDefinitions": [
     {
       "name": "my-react-app-container",
@@ -37,7 +37,7 @@
           "CMD-SHELL",
           "curl -f http://localhost:3000/health"
         ],
-        "interval": 10,
+        "interval": 30,
         "timeout": 5,
         "retries": 3
       },
@@ -47,7 +47,7 @@
   "family": "my-react-app-task",
   "executionRoleArn": "arn:aws:iam::992382383822:role/AWSECSTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 5,
+  "revision": 8,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -99,7 +99,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-12-10T22:46:26.787Z",
+  "registeredAt": "2024-12-11T22:22:39.381Z",
   "registeredBy": "arn:aws:iam::992382383822:user/uj_dev_000",
-  "enableFaultInjection": false
+  "enableFaultInjection": false,
 }
