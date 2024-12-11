@@ -101,6 +101,5 @@
   },
   "registeredAt": "2024-12-10T22:46:26.787Z",
   "registeredBy": "arn:aws:iam::992382383822:user/uj_dev_000",
-  "enableFaultInjection": false,
-  "tags": []
+  "enableFaultInjection": false
 }
