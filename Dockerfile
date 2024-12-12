@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM --platform=linux/amd64 992382383822.dkr.ecr.us-east-1.amazonaws.com/node:18-alpine AS builder
+FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/node:18-alpine AS builder
 
 # Set working directory inside the container
 WORKDIR /app
