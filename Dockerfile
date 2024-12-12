@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/node:18-alpine AS builder
+FROM public.ecr.aws/docker/library/node:18-alpine AS builder
 
 # Set working directory inside the container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the React app using Nginx
-FROM nginx:1.25-alpine
+FROM public.ecr.aws/nginx/nginx:alpine
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -28,7 +28,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy React build artifacts from the builder stage
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# Expose port 80 for Nginx
+# Expose port 3000 for Nginx
 EXPOSE 3000
 
 # Start Nginx server
