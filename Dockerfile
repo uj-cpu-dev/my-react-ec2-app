@@ -16,8 +16,11 @@ COPY . .
 # Build the React application for production
 RUN npm run build
 
-# Stage 2: Serve the React app using Nginx
-FROM public.ecr.aws/nginx/nginx:alpine
+# Stage 2: Use custom binfmt image (optional, if you need QEMU binaries or multi-arch support)
+FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/binfmt:latest AS binfmt
+
+# Stage 3: Serve the React app using the custom Nginx image
+FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
