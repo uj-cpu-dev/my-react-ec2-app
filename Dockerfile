@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/node:latest AS builder
+FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/node:18-alpine AS builder
 
 # Set working directory inside the container
 WORKDIR /app
@@ -16,7 +16,10 @@ COPY . .
 # Build the React application for production
 RUN npm run build
 
-# Stage 2: Serve the React app using Nginx
+# Stage 2: Use custom binfmt image (optional, if you need QEMU binaries or multi-arch support)
+FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/binfmt:latest AS binfmt
+
+# Stage 3: Serve the React app using the custom Nginx image
 FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
 
 # Copy custom Nginx configuration
