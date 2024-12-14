@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/node:latest AS builder
+FROM public.ecr.aws/lambda/nodejs:20 AS builder
 
 # Set working directory inside the container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the React app using the custom Nginx image
-FROM 992382383822.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+FROM public.ecr.aws/nginx/nginx:stable-perl
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
