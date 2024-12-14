@@ -1,5 +1,5 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:992382383822:task-definition/my-react-app-task:8",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:992382383822:task-definition/my-react-app-task:9",
   "containerDefinitions": [
     {
       "name": "my-react-app-container",
